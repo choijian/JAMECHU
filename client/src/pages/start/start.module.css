@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: flex-end; /* 하단 정렬 */
+  height: 100vh; /* 화면 전체 높이 */
+  background-image: url('../../assets/start_background.png'); /* 배경 이미지 */
+  background-size: 100% 100%;
+  background-repeat: repeat-x; /* 가로 방향으로 반복 */
+  background-position: top center; /* 배경 이미지를 중앙에 위치 */
+  overflow: auto; /* 스크롤 활성화 */
+}
+
+.button {
+  width: 45vw; /* 너비를 화면 너비의 45%로 설정 */
+  height: 7vh; /* 높이를 화면 높이의 7%로 설정 */
+  margin-bottom: 20%; /* 하단 여백을 10%로 설정하여 버튼과 하단 사이 여백 조정 */
+  border-radius: 20px; /* 테두리 반경 설정 */
+  opacity: 1; /* 불투명도 설정 */
+  background-color: rgba(255, 253, 253, 1); /* 배경 색상 */
+  color: rgba(41, 65, 121, 1); /* 글자 색상 */
+  border: none; /* 기본 테두리 제거 */
+  cursor: pointer; /* 마우스 커서 변경 */
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); /* 그림자 효과 */
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 가운데 정렬 */
+  align-items: center; /* 가운데 정렬 */
+  font-size: 2.5rem; /* 기본 글자 크기 */
+  font-weight: bold; /* 글자 두께 */
+}
+
+/* 미디어 쿼리 예시 */
+@media (max-width: 600px) {
+  .button {
+    width: 45vw; /* 작은 화면에서는 너비를 90%로 설정 */
+    height: 7vh; /* 높이를 화면 높이의 7%로 설정 */
+    border-radius: 20px; /* 작은 화면에서는 테두리 반경 조정 */
+    margin-bottom: 30%; /* 하단 여백을 10%로 설정하여 버튼과 하단 사이 여백 조정 */
+    font-size: 1.5rem; /* 기본 글자 크기 */
+  }
+}

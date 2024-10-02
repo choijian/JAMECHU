@@ -1,6 +1,6 @@
 // src/App.js
 import React from "react";
-import StartPage from "./StartPage";
+import StartPage from "./pages/start/StartPage";
 
 const App = () => {
   return (
