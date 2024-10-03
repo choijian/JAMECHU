@@ -1,0 +1,136 @@
+/* main.module.css */
+
+/* 전체 페이지 스타일 */
+.mainPage {
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 0.5%;
+}
+
+/* 헤더 섹션 스타일 */
+.headerSection {
+  background: linear-gradient(
+    180deg,
+    #335091 0%,
+    #253b6f 100%
+  ); /* 그라데이션 */
+  width: 88vw; /* 너비를 화면 너비의 90%로 설정 */
+  height: 43vh; /* 높이를 화면 높이의 40%로 설정 */
+  margin-top: 15%; /* 하단 여백을 10%로 설정하여 버튼과 하단 사이 여백 조정 */
+  color: white;
+  padding: 5px;
+  display: flex; /* Flexbox 사용 */
+  flex-direction: column; /* 세로로 배치 */
+  justify-content: center; /* 수직 방향 가운데 정렬 */
+  align-items: center; /* 가로 방향 가운데 정렬 */
+  border-radius: 20px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.headerSection h1 {
+  margin-top: 3%;
+  font-size: 34px;
+  text-align: left;
+  width: 80%; /* 텍스트 너비 */
+  margin-right: 10%; /* 텍스트를 더 좌측으로 이동 */
+}
+
+.chefImage {
+  width: 80%; /* headerSection 너비의 20% */
+  height: auto; /* 가로에 비례하여 자동으로 높이를 조정 */
+  max-height: 52%; /* headerSection 높이의 최대 80%로 제한 */
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+/* 섹션을 화면 중앙에 배치하는 상위 컨테이너 */
+.container {
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  height: 100vh; /* 화면 전체 높이를 사용 */
+}
+
+.popularRecipe {
+  display: flex; /* Flexbox 사용 */
+  align-items: center; /* 아이콘과 텍스트 수직 중앙 정렬 */
+  width: 88vw; /* 너비를 화면 너비의 88%로 설정 */
+  height: 23vw; /* 높이를 콘텐츠에 맞게 설정 */
+  padding: 5%;
+  background-color: #f8f8fa;
+  border-radius: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3vh;
+  margin-bottom: 2vh;
+  box-shadow: 0px 3.75px 3.75px 0px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  border: none;
+}
+
+.icon {
+  height: 5.6vh; /* 아이콘 크기 */
+  width: auto;
+  margin-right: 15px; /* 아이콘과 텍스트 사이 여백 */
+  margin-left: 0;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column; /* 텍스트를 세로로 배치 */
+  justify-content: center; /* 텍스트 수직 가운데 정렬 */
+  text-align: left;
+  flex: 1; /* 텍스트가 남은 공간을 차지하게 함 */
+  align-items: flex-start; /* 텍스트를 수직 중앙 대신 왼쪽 정렬 */
+}
+
+.popularRecipe h2 {
+  font-size: 16px; /* 텍스트 크기 */
+  margin: 0 0 5px 0; /* 하단에 약간의 간격 추가 */
+  text-align: left;
+  color: #23374d;
+  line-height: 1.2;
+}
+
+.popularRecipe p {
+  margin: 0;
+  font-size: 11px; /* 서브 텍스트 크기 */
+  color: #23374d;
+  line-height: 1.4;
+  word-break: keep-all; /* 줄바꿈 설정으로 텍스트가 한 줄에 유지되도록 */
+}
+
+/* 추천 옵션 섹션 스타일 */
+.recommendationOptions {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 2%;
+}
+
+.optionCard {
+  min-width: 170px; /* 최소 너비를 줄여 카드 크기 축소 */
+  background-color: rgba(248, 248, 250, 1);
+  padding: 2%;
+  border-width: 0; /* 테두리 두께를 0으로 설정 */
+  border-radius: 20px;
+  box-shadow: 0px 3.75px 3.75px 0px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.optionIcon {
+  height: 60px;
+  margin-top: 20px;
+  margin-bottom: 2%;
+}
+
+.optionCard h3 {
+  font-size: 14px;
+  margin-bottom: 2%;
+}
+
+.optionCard p {
+  font-size: 10px;
+  margin-bottom: 5%;
+}

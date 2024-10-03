@@ -1,0 +1,109 @@
+/* RecPage.module.css */
+
+/* 페이지 스타일 */
+.pageContainer {
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* 뒤로가기 버튼 스타일 */
+.backButtonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  font-size: 24px; /* Make the arrow large enough */
+  cursor: pointer;
+  color: #333; /* Adjust color if needed */
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.subTitle {
+  font-size: 14px;
+  color: #95a5a6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipeName {
+  font-size: 18px;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+.heartIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.starIcon {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.timeInfo,
+.commentInfo {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.detailButton {
+  width: 100%;
+  background-color: #3b5998;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.detailButton:hover {
+  background-color: #2c3e50;
+}
