@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios"; // axios를 사용하여 POST 요청을 보냅니다.
+import axios from "axios";
 import styles from "./rec.module.css";
-import starIcon from "../../assets/star-icon.png"; // 별 아이콘
-import clockIcon from "../../assets/clock-icon.png"; // 시간 아이콘
-import commentIcon from "../../assets/comment-icon.png"; // 댓글 아이콘
-import heartFilled from "../../assets/heart-filled.png"; // 채워진 하트 아이콘
-import heartEmpty from "../../assets/heart-empty.png"; // 빈 하트 아이콘
-
-// 백엔드 URL을 config에서 가져옵니다.
+import starIcon from "../../assets/star-icon.png";
+import clockIcon from "../../assets/clock-icon.png";
+import commentIcon from "../../assets/comment-icon.png";
+import heartFilled from "../../assets/heart-filled.png";
+import heartEmpty from "../../assets/heart-empty.png";
 import config from "../../config"; // config 파일에서 backendUrl 가져오기
 
 const RecPage = () => {
   const location = useLocation(); // 페이지로 전달된 데이터 가져오기
-  const navigate = useNavigate(); // 뒤로 가기 위한 navigate 함수
-  const { recipes } = location.state || {}; // 전달된 데이터에서 recipes 배열 가져오기
+  const navigate = useNavigate();
+  const [recipes, setRecipes] = useState([]); // 빈 배열로 초기화하여 안전한 렌더링 보장
+  const [loading, setLoading] = useState(true); // 로딩 상태 추가
+
+  useEffect(() => {
+    console.log("location.state 값 확인:", location.state);
+    if (
+      location.state?.recommendations &&
+      Array.isArray(location.state.recommendations)
+    ) {
+      console.log("레시피 배열:", location.state.recommendations);
+      setRecipes(location.state.recommendations);
+      setLoading(false);
+    } else {
+      console.log("레시피가 없음 또는 배열이 아님");
+      setLoading(false);
+    }
+  }, [location.state]);
 
   // "뒤로 가기" 버튼 클릭 시 MainPage로 이동
   const handleBackClick = () => {
@@ -32,12 +46,14 @@ const RecPage = () => {
       <h1 className={styles.title}>추천 레시피 보기</h1>
       <p className={styles.subTitle}>AI가 추천해주는 맞춤형 레시피입니다.</p>
 
-      {recipes && recipes.length > 0 ? (
+      {loading ? (
+        <div className={styles.spinner}></div> // 스피너 표시
+      ) : recipes.length > 0 ? (
         recipes.map((recipe) => (
           <RecipeCard key={recipe.recipe_id} recipe={recipe} />
         ))
       ) : (
-        <p>레시피 데이터를 불러오는 중입니다...</p>
+        <p>레시피 데이터가 없습니다.</p>
       )}
     </div>
   );
@@ -47,27 +63,20 @@ const RecPage = () => {
 const RecipeCard = ({ recipe }) => {
   const { name, mean_rating, minutes, recipe_count } = recipe;
 
-  // 하트(좋아요) 상태 관리
   const [isFavorite, setIsFavorite] = useState(recipe.favorite || false);
 
-  // 하트 클릭 시 상태 변경 함수
   const handleHeartClick = () => {
     setIsFavorite(!isFavorite); // 현재 상태를 반대로 변경
   };
 
-  const navigate = useNavigate(); // 페이지 이동을 위한 navigate 함수
+  const navigate = useNavigate();
 
-  // "레시피 상세 보기" 클릭 시 POST 요청
   const handleDetailClick = async () => {
     try {
       const response = await axios.post(
         `${config.backendUrl}/recommendation/recipe-detail`,
-        {
-          recipe_id: recipe.recipe_id,
-        }
+        { recipe_id: recipe.recipe_id }
       );
-
-      // 서버로부터 데이터를 성공적으로 받아오면 recipedetail 페이지로 이동하면서 데이터 전달
       navigate("/recipedetail", { state: { recipeDetail: response.data } });
     } catch (error) {
       console.error("레시피 상세 정보를 불러오는 중 오류 발생:", error);
@@ -78,7 +87,6 @@ const RecipeCard = ({ recipe }) => {
     <div className={styles.card}>
       <div className={styles.cardHeader}>
         <h2 className={styles.recipeName}>{name}</h2>
-        {/* 하트 아이콘 클릭 시 상태 변경 */}
         <img
           src={isFavorite ? heartFilled : heartEmpty}
           alt={isFavorite ? "favorite" : "not favorite"}
@@ -87,7 +95,6 @@ const RecipeCard = ({ recipe }) => {
         />
       </div>
 
-      {/* 평점, 시간, 댓글 정보를 같은 라인에 배치 */}
       <div className={styles.infoContainer}>
         <div className={styles.ratingInfo}>
           <img src={starIcon} alt="rating" className={styles.starIcon} />

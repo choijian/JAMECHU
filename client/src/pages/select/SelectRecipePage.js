@@ -58,7 +58,7 @@ const RecipeSelect = () => {
           }
         );
         console.log(response.data);
-        navigate("/recommendation-result", {
+        navigate("/recommend", {
           state: { recommendations: response.data },
         }); // 추천 결과 페이지로 이동하며 결과 전달
       } catch (error) {

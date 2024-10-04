@@ -11,7 +11,7 @@ import cbfIcon from "../../assets/cbf-icon.png";
 
 const MainPage = () => {
   const navigate = useNavigate();
-  const [recipes, setRecipes] = useState([]);
+  const [recommendations, setRecipes] = useState([]);
 
   const handlePopularRecipesClick = () => {
     const url = `${config.backendUrl}/recommendation/poprec`;
@@ -22,7 +22,7 @@ const MainPage = () => {
       .then((response) => response.json())
       .then((data) => {
         setRecipes(data);
-        navigate("/recommend", { state: { recipes: data } });
+        navigate("/recommend", { state: { recommendations: data } });
       })
       .catch((error) => {
         console.error("Error fetching popular recipes:", error);
