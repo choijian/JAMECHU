@@ -1,0 +1,30 @@
+# 개발에 사용되는 IDE 설정 디렉토리
+.idea/
+.vscode/
+
+# 버전 관리 시스템 관련 디렉토리
+.git/
+.gitignore
+
+# 로컬 개발 환경 설정 파일
+.env
+venv/
+
+# Django의 정적 파일 및 컬렉트된 정적 파일
+#static/
+collected_static/
+
+# PostgreSQL과 관련된 임시 및 로컬 파일
+*.bak
+*.dump
+*.sql
+
+# PostgreSQL 데이터베이스 볼륨 디렉토리
+data/
+
+# 개발 중에 생성되는 임시 파일 및 디렉토리
+*.pyc
+__pycache__/
+
+# 테스트 데이터 파일
+test_data/
