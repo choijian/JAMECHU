@@ -128,11 +128,13 @@
 
 .optionCard h3 {
   font-size: 14px;
+  color: #23374d;
   margin-bottom: 2%;
 }
 
 .optionCard p {
   font-size: 10px;
+  color: #23374d;
   margin-bottom: 5%;
 }
 
