@@ -1,6 +1,6 @@
 // config.js
 const config = {
-  backendUrl: "https://deepdaiv-jamechu.store:8000",
+  backendUrl: "https://deepdaiv-jamechu.store",
 };
 
 export default config;
