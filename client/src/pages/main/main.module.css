@@ -33,6 +33,7 @@
   margin-top: 3%;
   font-size: 34px;
   text-align: left;
+  color: white;
   width: 80%; /* 텍스트 너비 */
   margin-right: 10%; /* 텍스트를 더 좌측으로 이동 */
 }

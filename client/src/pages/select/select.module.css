@@ -1,0 +1,81 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative; /* 뒤로가기 버튼을 상단에 위치시키기 위해 position 설정 */
+}
+
+.backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.backButton:hover {
+  color: #1e40af; /* 호버 시 색상 변경 */
+}
+
+.title {
+  margin-top: 8vh;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subTitle {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.recipeGrid {
+  margin-top: 3vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 500px;
+  margin-bottom: 10px;
+}
+
+.recipeButton {
+  width: 158px;
+  height: 183px;
+  border: none;
+  padding: 0;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.selected {
+  border: 5px solid rgba(47, 76, 137, 1);
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.submitButton {
+  background-color: #2f4c89;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 40px;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #2f4c89; /* 호버 시 색상 변경 */
+}

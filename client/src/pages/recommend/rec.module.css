@@ -2,7 +2,7 @@
 
 /* 페이지 스타일 */
 .pageContainer {
-  padding: 20px;
+  padding: 15px;
   font-family: 'Arial', sans-serif;
   background-color: #f9f9f9;
 }
@@ -27,13 +27,15 @@
   font-weight: bold;
   color: #2c3e50;
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .subTitle {
   font-size: 14px;
   color: #95a5a6;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .card {
@@ -41,7 +43,7 @@
   border: 1px solid #dcdcdc;
   border-radius: 10px;
   padding: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -53,15 +55,15 @@
 
 .recipeName {
   font-size: 18px;
-  color: #2c3e50;
+  color: #2f4c89;
   font-weight: bold;
+  margin-right: 20px;
 }
 
 .heartIcon {
   width: 24px;
   height: 24px;
 }
-
 .ratingContainer {
   display: flex;
   align-items: center;
@@ -69,27 +71,31 @@
 }
 
 .starIcon {
-  width: 18px;
-  height: 18px;
-  margin-right: 5px;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
 }
 
+/* 평점, 시간, 댓글을 같은 라인에 정렬 */
 .infoContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
+  gap: 10px; /* 요소 간 간격 추가 */
 }
 
 .timeInfo,
-.commentInfo {
+.commentInfo,
+.ratingInfo {
   display: flex;
   align-items: center;
 }
 
 .icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 5px;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
 }
 
 .detailButton {

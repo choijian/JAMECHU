@@ -30,7 +30,7 @@ const RecPage = () => {
         </button>
       </div>
       <h1 className={styles.title}>추천 레시피 보기</h1>
-      <p className={styles.subTitle}>AI가 추천해주는 레시피입니다.</p>
+      <p className={styles.subTitle}>AI가 추천해주는 맞춤형 레시피입니다.</p>
 
       {recipes && recipes.length > 0 ? (
         recipes.map((recipe) => (
@@ -86,11 +86,13 @@ const RecipeCard = ({ recipe }) => {
           onClick={handleHeartClick}
         />
       </div>
-      <div className={styles.ratingContainer}>
-        <img src={starIcon} alt="rating" className={styles.starIcon} />
-        <span>{mean_rating}</span>
-      </div>
+
+      {/* 평점, 시간, 댓글 정보를 같은 라인에 배치 */}
       <div className={styles.infoContainer}>
+        <div className={styles.ratingInfo}>
+          <img src={starIcon} alt="rating" className={styles.starIcon} />
+          <span>{mean_rating}</span>
+        </div>
         <div className={styles.timeInfo}>
           <img src={clockIcon} alt="time" className={styles.icon} />
           <span>{minutes} 분</span>
@@ -100,6 +102,7 @@ const RecipeCard = ({ recipe }) => {
           <span>{recipe_count} 댓글</span>
         </div>
       </div>
+
       <button className={styles.detailButton} onClick={handleDetailClick}>
         레시피 상세 보기
       </button>

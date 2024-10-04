@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // 페이지 이동을 위한 useNavigate 훅
-import styles from "./main.module.css"; // CSS 모듈 사용
-import config from "../../config"; // 백엔드 URL을 담은 config 파일 (경로에 맞게 조정)
+import { useNavigate } from "react-router-dom";
+import styles from "./main.module.css";
+import config from "../../config";
 import chefIcon from "../../assets/chef.png";
 import popularIcon from "../../assets/popular-icon.png";
 import mfIcon from "../../assets/mf-icon.png";
@@ -10,30 +10,27 @@ import knnIcon from "../../assets/knn-icon.png";
 import cbfIcon from "../../assets/cbf-icon.png";
 
 const MainPage = () => {
-  const navigate = useNavigate(); // 페이지 이동 훅 선언
-  const [recipes, setRecipes] = useState([]); // 레시피 데이터를 저장할 state
+  const navigate = useNavigate();
+  const [recipes, setRecipes] = useState([]);
 
-  // 인기 레시피 데이터를 가져오는 함수
   const handlePopularRecipesClick = () => {
-    const url = `${config.backendUrl}/recommendation/poprec`; // 백엔드 API 경로 설정
+    const url = `${config.backendUrl}/recommendation/poprec`;
 
-    // fetch로 GET 요청
     fetch(url, {
       method: "GET",
     })
-      .then((response) => response.json()) // 응답 데이터를 JSON으로 변환
+      .then((response) => response.json())
       .then((data) => {
-        setRecipes(data); // 받아온 데이터를 상태에 저장
-        navigate("/recommend", { state: { recipes: data } }); // RecPage로 데이터를 전달하며 이동
+        setRecipes(data);
+        navigate("/recommend", { state: { recipes: data } });
       })
       .catch((error) => {
-        console.error("Error fetching popular recipes:", error); // 에러 처리
+        console.error("Error fetching popular recipes:", error);
       });
   };
 
   return (
     <div className={styles.mainPage}>
-      {/* 헤더 섹션 */}
       <div className={styles.headerSection}>
         <h1>
           나에게 딱 맞는 <br /> 레시피 추천받기
@@ -63,6 +60,7 @@ const MainPage = () => {
             </>
           }
           icon={mfIcon}
+          onClick={() => navigate("/select", { state: { model_id: "MF" } })}
         />
         <OptionCard
           title="FM으로 추천받기"
@@ -72,6 +70,7 @@ const MainPage = () => {
             </>
           }
           icon={fmIcon}
+          onClick={() => navigate("/select", { state: { model_id: "FM" } })}
         />
         <OptionCard
           title="KNN으로 추천받기"
@@ -81,6 +80,7 @@ const MainPage = () => {
             </>
           }
           icon={knnIcon}
+          onClick={() => navigate("/select", { state: { model_id: "KNN" } })}
         />
         <OptionCard
           title="CBF로 추천받기"
@@ -91,16 +91,16 @@ const MainPage = () => {
             </>
           }
           icon={cbfIcon}
+          onClick={() => navigate("/select", { state: { model_id: "CBF" } })}
         />
       </div>
     </div>
   );
 };
 
-// OptionCard 컴포넌트
-const OptionCard = ({ title, description, icon }) => {
+const OptionCard = ({ title, description, icon, onClick }) => {
   return (
-    <button className={styles.optionCard}>
+    <button className={styles.optionCard} onClick={onClick}>
       <img src={icon} alt={title} className={styles.optionIcon} />
       <h3>{title}</h3>
       <p>{description}</p>
