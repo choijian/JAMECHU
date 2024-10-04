@@ -16,16 +16,13 @@ const RecPage = () => {
   const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
   useEffect(() => {
-    console.log("location.state 값 확인:", location.state);
     if (
       location.state?.recommendations &&
       Array.isArray(location.state.recommendations)
     ) {
-      console.log("레시피 배열:", location.state.recommendations);
       setRecipes(location.state.recommendations);
       setLoading(false);
     } else {
-      console.log("레시피가 없음 또는 배열이 아님");
       setLoading(false);
     }
   }, [location.state]);

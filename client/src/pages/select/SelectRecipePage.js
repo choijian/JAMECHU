@@ -18,6 +18,7 @@ const RecipeSelect = () => {
   const location = useLocation();
   const model_id = location.state?.model_id || ""; // MainPage에서 넘어온 model_id
   const [recipe_ids, setRecipeIds] = useState([]); // 선택한 recipe_id를 저장할 상태
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
   const navigate = useNavigate();
 
   // 예시 레시피 데이터 (각 이미지 경로 포함)
@@ -49,19 +50,21 @@ const RecipeSelect = () => {
   const handleSubmit = async () => {
     if (recipe_ids.length === 3) {
       try {
-        // model_id와 recipe_ids를 함께 POST 요청으로 전송
+        setLoading(true); // 로딩 상태 시작
         const response = await axios.post(
-          `${config.backendUrl}/recommendation/recommend-recipe`, // 변경된 엔드포인트
+          `${config.backendUrl}/recommendation/recommend-recipe`,
           {
             model_id, // 선택된 모델
             recipe_ids, // 선택된 레시피들
           }
         );
         console.log(response.data);
+        setLoading(false); // 로딩 상태 종료
         navigate("/recommend", {
           state: { recommendations: response.data },
-        }); // 추천 결과 페이지로 이동하며 결과 전달
+        });
       } catch (error) {
+        setLoading(false); // 로딩 상태 종료
         console.error("레시피 추천 중 오류가 발생했습니다.", error);
       }
     } else {
@@ -88,24 +91,30 @@ const RecipeSelect = () => {
         </p>
       </div>
 
-      <div className={styles.recipeGrid}>
-        {recipes.map((recipe) => (
-          <button
-            key={recipe.recipe_id}
-            className={`${styles.recipeButton} ${
-              recipe_ids.includes(recipe.recipe_id) ? styles.selected : ""
-            }`}
-            onClick={() => handleRecipeSelect(recipe.recipe_id)}
-            style={{ backgroundImage: `url(${recipe.image})` }} // 이미지를 버튼 배경으로 설정
-          >
-            {/* 버튼에 이미지만 사용 */}
+      {loading ? (
+        // 로딩 상태일 때 스피너 표시
+        <div className={styles.spinner}></div>
+      ) : (
+        <>
+          <div className={styles.recipeGrid}>
+            {recipes.map((recipe) => (
+              <button
+                key={recipe.recipe_id}
+                className={`${styles.recipeButton} ${
+                  recipe_ids.includes(recipe.recipe_id) ? styles.selected : ""
+                }`}
+                onClick={() => handleRecipeSelect(recipe.recipe_id)}
+                style={{ backgroundImage: `url(${recipe.image})` }} // 이미지를 버튼 배경으로 설정
+              >
+                {/* 버튼에 이미지만 사용 */}
+              </button>
+            ))}
+          </div>
+          <button className={styles.submitButton} onClick={handleSubmit}>
+            제출하기
           </button>
-        ))}
-      </div>
-
-      <button className={styles.submitButton} onClick={handleSubmit}>
-        제출하기
-      </button>
+        </>
+      )}
     </div>
   );
 };
