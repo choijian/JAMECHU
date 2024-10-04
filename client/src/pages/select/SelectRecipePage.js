@@ -84,18 +84,18 @@ const RecipeSelect = () => {
         &lt;
       </button>
 
-      <h1 className={styles.title}>선호 레시피 고르기</h1>
-      <div>
-        <p className={styles.subTitle}>
-          가장 관심이 가는 메뉴 3가지를 골라주세요.
-        </p>
-      </div>
-
       {loading ? (
         // 로딩 상태일 때 스피너 표시
         <div className={styles.spinner}></div>
       ) : (
         <>
+          <h1 className={styles.title}>선호 레시피 고르기</h1>
+          <div>
+            <p className={styles.subTitle}>
+              가장 관심이 가는 메뉴 3가지를 골라주세요.
+            </p>
+          </div>
+
           <div className={styles.recipeGrid}>
             {recipes.map((recipe) => (
               <button
