@@ -4,7 +4,6 @@ import styles from "./main.module.css";
 import config from "../../config";
 import chefIcon from "../../assets/chef.png";
 import popularIcon from "../../assets/popular-icon.png";
-import mfIcon from "../../assets/mf-icon.png";
 import fmIcon from "../../assets/fm-icon.png";
 import knnIcon from "../../assets/knn-icon.png";
 import cbfIcon from "../../assets/cbf-icon.png";
@@ -72,17 +71,6 @@ const MainPage = () => {
 
           {/* 추천 옵션 섹션 */}
           <div className={styles.recommendationOptions}>
-            <OptionCard
-              title="MF로 추천받기"
-              description={
-                <>
-                  레시피의 잠재 요인을 반영하여 <br /> 유사한 레시피를
-                  추천해줘요
-                </>
-              }
-              icon={mfIcon}
-              onClick={() => handleSelectModel("MF")}
-            />
             <OptionCard
               title="FM으로 추천받기"
               description={

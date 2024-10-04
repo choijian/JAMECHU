@@ -2,10 +2,10 @@ import os
 import numpy as np
 import lightfm
 import joblib
-import ast
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.neighbors import NearestNeighbors
 from django.conf import settings
 from .models import InteractionInfo, RecipeInfo
 
@@ -93,60 +93,71 @@ def run_fm_model(recipe_ids):
     # 추천된 item_id 리스트 반환
     return top_items.tolist()  # 리스트 반환
 
-# MF 모델의 추천을 실행하는 함수
-def run_mf_model(recipe_ids):    
-    best_user = find_best_user(recipe_ids)  # MF 모델에서도 적합한 유저 찾기
-    
-    if best_user is None:
-        return {"error": "No suitable user found"}
-    
-    # MF 추천 로직 추가
-    return {"mf_recommendations": ["recipe_a", "recipe_b", "recipe_c"]}
+# KNN 모델의 추천을 실행하는 함수
+def run_knn_model(recipe_ids, k=2):
+    # RecipeInfo의 모든 레시피를 가져오기
+    recipes = RecipeInfo.objects.all()
+    recipes_df = pd.DataFrame(list(recipes.values()))
 
-# MF 모델의 추천을 실행하는 함수
-def run_knn_model(recipe_ids):    
-    best_user = find_best_user(recipe_ids)  # MF 모델에서도 적합한 유저 찾기
-    
-    if best_user is None:
-        return {"error": "No suitable user found"}
-    
-    # MF 추천 로직 추가
-    return {"mf_recommendations": ["recipe_a", "recipe_b", "recipe_c"]}
+    # TF-IDF 계산 (레시피의 요리 과정 text 사용)
+    text_data = recipes_df['ingredients'].tolist()
+    tfidf = TfidfVectorizer()
+    tfidf_matrix = tfidf.fit_transform(text_data)
 
+    # KNN 모델 생성 (코사인 유사도를 사용)
+    knn = NearestNeighbors(n_neighbors=k+1, metric='cosine')
+    knn.fit(tfidf_matrix)
+
+    recommended_recipe_ids = []
+
+    # 입력된 각 recipe_id에 대해 추천 레시피 구하기
+    for recipe_id in recipe_ids:
+        # 해당 recipe_id에 대한 TF-IDF 벡터 구하기
+        recipe_index = recipes_df[recipes_df['recipe_id'] == recipe_id].index[0]
+        recipe_vector = tfidf_matrix[recipe_index]
+
+        # KNN 모델을 사용해 가장 가까운 k개의 이웃 찾기
+        distances, indices = knn.kneighbors(recipe_vector, n_neighbors=k+1)
+
+        # 자기 자신은 제외하고, 추천된 레시피 ID를 리스트에 추가
+        nearest_indices = indices.flatten()[1:]  # 첫 번째는 자기 자신이므로 제외
+        nearest_recipe_ids = recipes_df.iloc[nearest_indices]['recipe_id'].tolist()
+
+        recommended_recipe_ids.extend(nearest_recipe_ids)
+
+    # 중복 제거 후 최대 6개의 추천 레시피 반환
+    return list(set(recommended_recipe_ids))[:6]
+
+# CBF 모델의 추천을 실행하는 함수
 def run_cbf_model(recipe_ids):
     # RecipeInfo의 모든 레시피 가져오기
     recipes = RecipeInfo.objects.all()
     recipes_df = pd.DataFrame(list(recipes.values()))
 
-    # TF-IDF 계산 준비 (레시피의 요리 과정 text)
-    text_data = recipes_df['steps'].tolist()
-    tfidf = TfidfVectorizer()
-    tfidf_matrix = tfidf.fit_transform(text_data)
+    # 재료 목록을 문자열로 변환 (이미 리스트인 경우 그대로 사용)
+    ingredients_data = recipes_df['ingredients'].apply(lambda x: ', '.join(x) if isinstance(x, list) else x).tolist()
 
+    # 재료를 TF-IDF로 벡터화
+    tfidf = TfidfVectorizer()
+    tfidf_matrix = tfidf.fit_transform(ingredients_data)
+
+    # 입력된 recipe_ids에 대한 인덱스 가져오기
+    recipe_indices = recipes_df[recipes_df['recipe_id'].isin(recipe_ids)].index.tolist()
+
+    # 입력된 recipe_ids와 모든 레시피 간의 코사인 유사도 한 번에 계산
+    cosine_sim = cosine_similarity(tfidf_matrix[recipe_indices], tfidf_matrix)
+
+    # 추천할 레시피 ID 저장 리스트
     recommended_recipe_ids = []
 
-    # 입력된 각 recipe_id에 대해 2개의 추천 레시피를 구함
-    for recipe_id in recipe_ids:
-        # 선택된 recipe_id에 해당하는 레시피의 재료 정보 가져오기
-        recipe = recipes_df.loc[recipes_df['recipe_id'] == recipe_id]
-        ingredients = recipe['ingredients'].values[0]
+    # 입력된 각 recipe_id에 대한 유사도 처리
+    for i, recipe_id in enumerate(recipe_ids):
+        # 유사도 벡터에서 자기 자신을 제외하고 유사도가 높은 레시피 추출
+        sim_scores = list(enumerate(cosine_sim[i]))
+        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         
-        # 만약 재료가 문자열 형태라면, 안전하게 split으로 처리
-        if isinstance(ingredients, str):
-            ingredients = ingredients.split(', ')  # 쉼표로 구분된 재료를 리스트로 변환
-
-        # 리스트가 문자열로 변환될 수 있도록 재료를 하나의 문자열로 합침
-        ingredients_str = ', '.join(ingredients)
-
-        # 입력된 레시피의 재료를 새로운 쿼리로 변환
-        new_query_vector = tfidf.transform([ingredients_str])
-
-        # 코사인 유사도 계산
-        cosine_sim = pd.DataFrame(cosine_similarity(tfidf_matrix, new_query_vector), columns=['cosine_similarity_score'], index=recipes_df.index)
-        cosine_sim = cosine_sim.sort_values(by='cosine_similarity_score', ascending=False)
-
-        # 유사도가 높은 레시피 2개 추천 (자기 자신은 제외)
-        top_recommendations = recipes_df.loc[cosine_sim.index[1:3], 'recipe_id'].tolist()
+        # 유사도가 높은 2개의 레시피 추천 (자기 자신 제외)
+        top_recommendations = [recipes_df.iloc[idx]['recipe_id'] for idx, score in sim_scores[1:3]]
         recommended_recipe_ids.extend(top_recommendations)
 
     # 중복 제거 후 최대 6개의 추천 레시피 반환

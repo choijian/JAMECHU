@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import InteractionInfo, RecipeInfo
-from .recommendations import get_recipe_details, find_best_user
-from .recommendations import run_fm_model, run_mf_model, run_knn_model, run_cbf_model
+from .recommendations import get_recipe_details
+from .recommendations import run_fm_model, run_knn_model, run_cbf_model
 
 # 추천 모델 선택 API
 class RecommendModelView(APIView):
@@ -14,10 +14,7 @@ class RecommendModelView(APIView):
         if not recipe_ids or len(recipe_ids) < 3:
             return Response({"error": "Not enough recipe data"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # 모델에 맞게 함수를 호출
-        if model_id == "MF":
-            recommended_recipe_ids = run_mf_model(recipe_ids)
-        elif model_id == "FM":
+        if model_id == "FM":
             recommended_recipe_ids = run_fm_model(recipe_ids)
         elif model_id == "KNN":
             recommended_recipe_ids = run_knn_model(recipe_ids)
