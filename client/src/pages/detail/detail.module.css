@@ -130,16 +130,18 @@ h1 {
   margin-bottom: 10px;
 }
 
+/* 뒤로가기 버튼 스타일 */
+.backButtonContainer {
+  display: flex;
+  align-items: left;
+}
+
 .backButton {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 30px;
-  color: #3b5998;
   background: none;
   border: none;
+  font-size: 20px; /* Make the arrow large enough */
   cursor: pointer;
-  font-weight: bold;
+  color: #333; /* Adjust color if needed */
 }
 
 .backButton:hover {
@@ -221,8 +223,22 @@ h1 {
     line-height: 1.4;
   }
 
+  /* 뒤로가기 버튼 스타일 */
+  .backButtonContainer {
+    display: flex;
+    align-items: center;
+  }
+
   .backButton {
-    margin: 20px;
-    font-size: 36px; /* 뒤로가기 버튼 크기 확대 */
+    background: none;
+    margin: 10px;
+    border: none;
+    font-size: 32px; /* Make the arrow large enough */
+    cursor: pointer;
+    color: #333; /* Adjust color if needed */
+  }
+
+  .backButton:hover {
+    color: #1e40af;
   }
 }

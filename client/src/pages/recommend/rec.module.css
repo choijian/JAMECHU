@@ -2,7 +2,7 @@
 
 /* 페이지 스타일 */
 .pageContainer {
-  padding: 15px;
+  padding: 10px;
   font-family: 'Arial', sans-serif;
   background-color: #f9f9f9;
 }
@@ -10,16 +10,19 @@
 /* 뒤로가기 버튼 스타일 */
 .backButtonContainer {
   display: flex;
-  align-items: center;
+  align-items: left;
 }
 
 .backButton {
   background: none;
   border: none;
-  font-size: 24px; /* Make the arrow large enough */
+  font-size: 20px; /* Make the arrow large enough */
   cursor: pointer;
   color: #333; /* Adjust color if needed */
-  margin-right: 10px;
+}
+
+.backButton:hover {
+  color: #1e40af;
 }
 
 .title {
@@ -136,13 +139,23 @@
 
 /* 태블릿 버전 스타일 (768px ~ 1024px) */
 @media (min-width: 768px) {
+  /* 뒤로가기 버튼 스타일 */
+  .backButtonContainer {
+    display: flex;
+    align-items: center;
+  }
+
   .backButton {
     background: none;
     border: none;
-    font-size: 48px; /* Make the arrow large enough */
+    margin: 10px;
+    font-size: 32px; /* Make the arrow large enough */
     cursor: pointer;
     color: #333; /* Adjust color if needed */
-    margin: 20px;
+  }
+
+  .backButton:hover {
+    color: #1e40af;
   }
 
   .title {

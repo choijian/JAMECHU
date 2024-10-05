@@ -106,10 +106,10 @@
   .backButton {
     background: none;
     border: none;
-    font-size: 48px; /* Make the arrow large enough */
+    font-size: 32px; /* Make the arrow large enough */
     cursor: pointer;
     color: #333; /* Adjust color if needed */
-    margin: 20px;
+    margin: 10px;
   }
 
   .title {
