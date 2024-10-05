@@ -23,16 +23,16 @@ const RecipeSelect = () => {
 
   // 예시 레시피 데이터 (각 이미지 경로 포함)
   const recipes = [
-    { recipe_id: "39087", image: chickenPasta },
-    { recipe_id: "107997", image: spicyShrimp },
-    { recipe_id: "90674", image: frenchToast },
-    { recipe_id: "161198", image: avocadoSushi },
-    { recipe_id: "99476", image: beefBroccoli },
-    { recipe_id: "52190", image: baconFriedRice },
-    { recipe_id: "116849", image: caesarSalad },
-    { recipe_id: "43023", image: creamGalicPasta },
-    { recipe_id: "29679", image: peanutButter },
-    { recipe_id: "45308", image: blackPepperChicken },
+    { recipe_id: "42816", image: chickenPasta },
+    { recipe_id: "1289", image: spicyShrimp },
+    { recipe_id: "59416", image: frenchToast },
+    { recipe_id: "10161", image: avocadoSushi },
+    { recipe_id: "61000", image: beefBroccoli },
+    { recipe_id: "53362", image: baconFriedRice },
+    { recipe_id: "2801", image: caesarSalad },
+    { recipe_id: "46773", image: creamGalicPasta },
+    { recipe_id: "30959", image: peanutButter },
+    { recipe_id: "48432", image: blackPepperChicken },
   ];
 
   // 레시피 선택 처리

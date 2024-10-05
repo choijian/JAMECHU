@@ -103,7 +103,7 @@ const RecipeCard = ({ recipe }) => {
         </div>
         <div className={styles.commentInfo}>
           <img src={commentIcon} alt="comments" className={styles.icon} />
-          <span>{recipe_count} 댓글</span>
+          <span>{recipe_count} 리뷰 </span>
         </div>
       </div>
 
