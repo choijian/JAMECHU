@@ -160,3 +160,69 @@ h1 {
   width: 40px;
   height: 40px;
 }
+
+/* 태블릿 버전 스타일 (768px ~ 1024px) */
+@media (min-width: 768px) {
+  .detailPage {
+    padding: 20px; /* 패딩을 더 넓게 */
+  }
+
+  h1 {
+    font-size: 40px; /* 제목 크기 확대 */
+    margin-top: 10vh;
+    margin-bottom: 6vh;
+  }
+
+  .recipeInfo {
+    margin-top: 10vh;
+    margin-bottom: 40px;
+    padding: 30px; /* 패딩 확대 */
+  }
+
+  .iconContainer {
+    gap: 5px; /* 아이콘 간격 확대 */
+  }
+
+  .iconItem {
+    width: 160px; /* 아이콘 카드 크기 확대 */
+    height: 180px;
+  }
+
+  .iconItem img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .iconItem p:first-child {
+    font-size: 22px; /* 텍스트 크기 확대 */
+  }
+
+  .iconItem p:last-child {
+    font-size: 22px; /* 텍스트 크기 확대 */
+  }
+
+  .nutrition,
+  .ingredients,
+  .steps {
+    padding: 15px; /* 섹션 패딩 확대 */
+    margin-bottom: 2vh; /* 섹션 간 간격 확대 */
+  }
+
+  .nutrition h2,
+  .ingredients h2,
+  .steps h2 {
+    font-size: 28px; /* 섹션 제목 크기 확대 */
+  }
+
+  .nutrition p,
+  .ingredients p,
+  .steps p {
+    font-size: 20px; /* 본문 텍스트 크기 확대 */
+    line-height: 1.4;
+  }
+
+  .backButton {
+    margin: 20px;
+    font-size: 36px; /* 뒤로가기 버튼 크기 확대 */
+  }
+}

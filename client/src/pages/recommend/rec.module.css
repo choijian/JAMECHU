@@ -133,3 +133,64 @@
     transform: rotate(360deg);
   }
 }
+
+/* 태블릿 버전 스타일 (768px ~ 1024px) */
+@media (min-width: 768px) {
+  .backButton {
+    background: none;
+    border: none;
+    font-size: 48px; /* Make the arrow large enough */
+    cursor: pointer;
+    color: #333; /* Adjust color if needed */
+    margin: 20px;
+  }
+
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 10px;
+  }
+
+  .subTitle {
+    font-size: 24px;
+    color: #95a5a6;
+    text-align: center;
+    margin-bottom: 5vh;
+  }
+
+  .card {
+    margin-left: 15vw;
+    width: 60vw;
+    padding: 40px; /* 카드 내 패딩 확대 */
+    margin-bottom: 4vh; /* 카드 간 간격 확대 */
+    border-radius: 20px;
+  }
+
+  .recipeName {
+    font-size: 32px; /* 카드 제목 크기 확대 */
+    width: 45vw;
+  }
+
+  .timeInfo span,
+  .commentInfo span,
+  .ratingInfo span {
+    font-size: 24px; /* 텍스트 크기 확대 */
+  }
+
+  .heartIcon,
+  .starIcon,
+  .icon {
+    width: 32px; /* 아이콘 크기 확대 */
+    height: 32px; /* 아이콘 크기 확대 */
+  }
+
+  .detailButton {
+    margin-top: 3vh;
+    font-size: 20px; /* 버튼 텍스트 크기 확대 */
+    padding: 12px; /* 버튼 패딩 확대 */
+  }
+}
