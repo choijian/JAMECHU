@@ -208,7 +208,7 @@
     display: flex;
     justify-content: center; /* 카드들을 수평 중앙에 정렬 */
     align-items: center; /* 카드들의 수직 정렬 */
-    flex-wrap: wrap; /* 여러 줄로 배치 가능 */
+    flex-direction: row; /* 여러 줄로 배치 가능 */
     gap: 30px; /* 카드 간격 증가 */
     padding: 3%; /* 패딩 증가 */
     max-width: 1200px; /* 선택적으로 최대 너비 설정 */
@@ -230,7 +230,7 @@
   }
 
   .optionCard p {
-    font-size: 16px; /* 서브 텍스트 크기 확대 */
+    font-size: 14px; /* 서브 텍스트 크기 확대 */
   }
 
   .optionIcon {
