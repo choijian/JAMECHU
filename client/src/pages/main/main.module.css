@@ -166,13 +166,13 @@
     width: 80vw; /* 너비 확대 */
     height: 40vh;
     margin-top: 8vh; /* 상단 여백 축소 */
-    font-size: 56px;
+    font-size: 44px;
     padding: 30px;
   }
 
   .headerSection h1 {
     margin-top: 6%;
-    font-size: 66px; /* 텍스트 크기 확대 */
+    font-size: 48px; /* 텍스트 크기 확대 */
     margin-bottom: 6%;
   }
 
@@ -191,12 +191,12 @@
 
   .popularRecipe h2 {
     margin-left: 20px;
-    font-size: 36px; /* 텍스트 크기 확대 */
+    font-size: 28px; /* 텍스트 크기 확대 */
   }
 
   .popularRecipe p {
     margin-left: 20px;
-    font-size: 24px; /* 서브 텍스트 크기 확대 */
+    font-size: 22px; /* 서브 텍스트 크기 확대 */
   }
 
   .icon {
@@ -218,7 +218,7 @@
   /* optionCard 스타일 */
   .optionCard {
     width: 26vw; /* 카드 크기 */
-    padding: 5px; /* 패딩 확대 */
+    padding: 3px; /* 패딩 확대 */
     display: flex;
     flex-direction: column;
     align-items: center; /* 카드 내의 내용도 중앙 정렬 */

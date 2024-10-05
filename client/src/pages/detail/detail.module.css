@@ -170,7 +170,7 @@ h1 {
   h1 {
     font-size: 40px; /* 제목 크기 확대 */
     margin-top: 10vh;
-    margin-bottom: 6vh;
+    margin-bottom: 8vh;
   }
 
   .recipeInfo {
@@ -184,8 +184,8 @@ h1 {
   }
 
   .iconItem {
-    width: 160px; /* 아이콘 카드 크기 확대 */
-    height: 180px;
+    width: 140px; /* 아이콘 카드 크기 확대 */
+    height: 160px;
   }
 
   .iconItem img {
